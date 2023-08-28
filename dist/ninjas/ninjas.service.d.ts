@@ -15,7 +15,7 @@ export declare class NinjasService {
     createNinja(createNinjaDto: CreateNinjaDto): {
         id: number;
         name: string;
-        weapon: "";
+        weapon: "stars" | "nunchucks";
     };
     updateNinja(id: number, updateNinjaDto: UpdateNinjaDto): {
         id: number;

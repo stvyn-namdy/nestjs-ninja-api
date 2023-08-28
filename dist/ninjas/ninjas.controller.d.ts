@@ -9,7 +9,7 @@ export declare class NinjasController {
         name: string;
         weapon: string;
     }[];
-    getOneNinja(id: string): {
+    getOneNinja(id: number): {
         id: number;
         name: string;
         weapon: string;
@@ -17,7 +17,7 @@ export declare class NinjasController {
     createninja(createNinjaDto: CreateNinjaDto): {
         id: number;
         name: string;
-        weapon: "";
+        weapon: "stars" | "nunchucks";
     };
     updateNinja(id: string, updateNinjaDto: UpdateNinjaDto): {
         id: number;

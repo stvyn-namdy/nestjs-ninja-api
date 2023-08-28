@@ -1,4 +1,4 @@
 export declare class CreateNinjaDto {
     name: string;
-    weapon: '';
+    weapon: 'stars' | 'nunchucks';
 }
