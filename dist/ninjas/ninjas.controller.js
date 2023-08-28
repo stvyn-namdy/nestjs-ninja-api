@@ -16,35 +16,30 @@ exports.NinjasController = void 0;
 const common_1 = require("@nestjs/common");
 const create_ninja_dto_1 = require("./dto/create-ninja.dto");
 const update_ninja_dto_1 = require("./dto/update-ninja.dto");
+const ninjas_service_1 = require("./ninjas.service");
 let NinjasController = exports.NinjasController = class NinjasController {
-    getNinjas(type) {
-        return [
-            { type }
-        ];
+    constructor(ninjasService) {
+        this.ninjasService = ninjasService;
+    }
+    getNinjas(weapon) {
+        return this.ninjasService.getNinjas(weapon);
     }
     getOneNinja(id) {
-        return {
-            id
-        };
+        return this.ninjasService.getNinja(+id);
     }
-    createninja(createninjadto) {
-        return {
-            name: createninjadto.name
-        };
+    createninja(createNinjaDto) {
+        return this.ninjasService.createNinja(createNinjaDto);
     }
-    updateNinja(id, updateNinjadto) {
-        return {
-            id,
-            name: updateNinjadto,
-        };
+    updateNinja(id, updateNinjaDto) {
+        return this.ninjasService.updateNinja(+id, updateNinjaDto);
     }
-    removveNinja() {
-        return {};
+    removeNinja(id) {
+        return this.ninjasService.removeNinja(+id);
     }
 };
 __decorate([
     (0, common_1.Get)(),
-    __param(0, (0, common_1.Query)('type')),
+    __param(0, (0, common_1.Query)('weapon')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
@@ -64,7 +59,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], NinjasController.prototype, "createninja", null);
 __decorate([
-    (0, common_1.Put)(),
+    (0, common_1.Put)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -72,12 +67,14 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], NinjasController.prototype, "updateNinja", null);
 __decorate([
-    (0, common_1.Delete)(),
+    (0, common_1.Delete)(':id'),
+    __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], NinjasController.prototype, "removveNinja", null);
+], NinjasController.prototype, "removeNinja", null);
 exports.NinjasController = NinjasController = __decorate([
-    (0, common_1.Controller)('ninjas')
+    (0, common_1.Controller)('ninjas'),
+    __metadata("design:paramtypes", [ninjas_service_1.NinjasService])
 ], NinjasController);
 //# sourceMappingURL=ninjas.controller.js.map
